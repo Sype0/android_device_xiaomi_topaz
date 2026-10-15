@@ -31,4 +31,15 @@ ALL_DEFAULT_INSTALLED_MODULES += \
     $(BT_FIRMWARE_MOUNT_POINT) \
     $(DSP_MOUNT_POINT)
 
+# LineageOS does not install uapi headers for prebuilt kernels, but the CAF
+# audio makefiles depend on $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr.
+# Install them from the prebuilt headers, like their headers_install target does.
+TOPAZ_KERNEL_USR := $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
+$(TOPAZ_KERNEL_USR): $(shell find $(TARGET_KERNEL_SOURCE) -type f)
+	@echo "Installing prebuilt kernel headers to $@"
+	rm -rf $@ && mkdir -p $@/include
+	cp -a $(TARGET_KERNEL_SOURCE)/. $@/include/
+	rm -f $@/include/Makefile
+	find $@/include -type f -name "*.h" -exec sed -i 's/struct sched_param/struct __kernel_sched_param/g' {} +
+
 endif
