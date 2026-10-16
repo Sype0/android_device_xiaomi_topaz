@@ -42,6 +42,6 @@ $(TOPAZ_KERNEL_USR): $(shell find $(TARGET_KERNEL_SOURCE) -type f)
 	cp -a $(TARGET_KERNEL_SOURCE)/. $@/include/
 	rm -f $@/include/Makefile
 	find $@/include -type f -name "*.h" -exec sed -i 's/struct sched_param/struct __kernel_sched_param/g' {} +
-	vendor/lineage/tools/clean_headers.sh $(dir $@)
+	vendor/lineage/tools/clean_headers.sh $(abspath $(dir $@))
 
 endif
