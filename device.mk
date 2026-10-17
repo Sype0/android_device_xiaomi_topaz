@@ -473,6 +473,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/perf/perfconfigstore.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/perfconfigstore.xml
 
 # Power
+$(call soong_config_set,qtipower,tap_to_wake_node,/proc/tp_gesture)
+
 PRODUCT_PACKAGES += \
     android.hardware.power-service-qti \
     android.hardware.power@1.2.vendor
