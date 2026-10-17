@@ -1,0 +1,19 @@
+//
+// SPDX-FileCopyrightText: The LineageOS Project
+// SPDX-License-Identifier: Apache-2.0
+//
+
+aconfig_value_set {
+    name: "aconfig_value_set-topaz-bp2a",
+    values: [
+        "aconfig-values-topaz-bp2a-com.android.systemui-all",
+    ],
+}
+
+aconfig_values {
+    name: "aconfig-values-topaz-bp2a-com.android.systemui-all",
+    package: "com.android.systemui",
+    srcs: [
+        "com.android.systemui/*.textproto",
+    ],
+}
