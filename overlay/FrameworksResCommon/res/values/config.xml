@@ -376,10 +376,12 @@
         <item>30</item>
     </integer-array>
 
-    <!-- Vibrator pattern for feedback when selecting an hour/minute tick of a Clock -->
+    <!-- Vibrator pattern for feedback when selecting an hour/minute tick of a Clock.
+         Also the fallback for EFFECT_TICK, which the HAL does not support; the motor
+         has no amplitude control, so keep it a short pulse without the initial delay. -->
     <integer-array name="config_clockTickVibePattern">
-        <item>125</item>
-        <item>30</item>
+        <item>0</item>
+        <item>10</item>
     </integer-array>
 
     <!-- Vibrator pattern for feedback when selecting a day/month/year date of a Calendar -->
