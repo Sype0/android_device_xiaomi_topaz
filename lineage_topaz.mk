@@ -14,10 +14,9 @@ $(call inherit-product, device/xiaomi/topaz/device.mk)
 # Inherit some common derp stuff.
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
-# To include Gapps 
-WITH_GMS := true
-# Use mini Gapps to have less bloat
-TARGET_USES_MINI_GAPPS := true
+# Vanilla (GMS-less): no Gapps baked in. Flash GApps/microG separately if needed.
+# WITH_GMS := true
+# TARGET_USES_MINI_GAPPS := true
 # EvoX Official
 EVO_BUILD_TYPE := Official
 
