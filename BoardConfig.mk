@@ -44,6 +44,14 @@ ART_BUILD_TARGET_DEBUG := false
 ART_BUILD_HOST_NDEBUG := true
 ART_BUILD_HOST_DEBUG := false
 
+# QtiDataServiceManager$QtiCellularDataServiceCallback extends the private
+# final DataServiceManager$DataServiceCallbackWrapper, a hard verifier error
+# that aborts dex2oat. Telephony no longer calls makeDataServiceManager, so
+# the class is never loaded; skip preopting the jar instead. This has to live
+# here: dex_preopt_config.mk does not see non-PRODUCT_ vars from device.mk.
+DEXPREOPT_DISABLED_MODULES += \
+    qti-telephony-common
+
 # Audio
 $(call soong_config_set, android_hardware_audio, run_64bit, true)
 
