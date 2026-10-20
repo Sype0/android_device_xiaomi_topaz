@@ -576,6 +576,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_BOOT_JARS += \
     telephony-ext
 
+# QtiDataServiceManager$QtiCellularDataServiceCallback extends the private
+# final DataServiceManager$DataServiceCallbackWrapper, a hard verifier error
+# that aborts dex2oat. Telephony no longer calls makeDataServiceManager, so
+# the class is never loaded; skip preopting the jar instead.
+DEXPREOPT_DISABLED_MODULES += \
+    qti-telephony-common
+
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.cdma.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.cdma.xml \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.gsm.xml \
