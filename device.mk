@@ -19,6 +19,15 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 # Add common definitions for Qualcomm
 $(call inherit-product, hardware/qcom-caf/common/common.mk)
 
+# Blur: off everywhere. crDroid's vendor config only adds
+# ro.surface_flinger.supports_background_blur=1 unless this is false, and that
+# product prop overrode the =0 in system_ext.prop.
+TARGET_SUPPORTS_BLUR := false
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.surface_flinger.supports_background_blur=0 \
+    persist.sys.sf.disable_blurs=1 \
+    ro.launcher.blur.appLaunch=0
+
 # A/B
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
