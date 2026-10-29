@@ -11,14 +11,12 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit from topaz device
 $(call inherit-product, device/xiaomi/topaz/device.mk)
 
-# Inherit some common derp stuff.
+# Inherit some common Lineage stuff.
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 # Vanilla (GMS-less): no Gapps baked in. Flash GApps/microG separately if needed.
 # WITH_GMS := true
 # TARGET_USES_MINI_GAPPS := true
-# EvoX Official
-EVO_BUILD_TYPE := Official
 
 PRODUCT_NAME := lineage_topaz
 PRODUCT_DEVICE := topaz
