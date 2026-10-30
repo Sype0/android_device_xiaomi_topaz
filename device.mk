@@ -528,6 +528,9 @@ PRODUCT_PACKAGES += \
     libprotobuf-cpp-lite-3.9.1-vendorcompat \
     librmnetctl
 
+# SELinux
+PRODUCT_SELINUX_TREBLE_LABELING_TRACKING_LIST_FILE := $(LOCAL_PATH)/sepolicy/treble_labeling_tracking_list.yaml
+
 # Sensors
 PRODUCT_PACKAGES += \
     android.frameworks.sensorservice@1.0.vendor \

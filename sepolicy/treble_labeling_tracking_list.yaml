@@ -1,0 +1,7 @@
+# Known SELinux Treble Labeling violations, see
+# system/sepolicy/tests/treble_labeling_tests.md
+platform_apps_in_vendor_seapp_contexts:
+  # Stock blob, platform signed and installed to system_ext. Its domain
+  # (vendor_poweroffalarm_app, device/qcom/sepolicy_vndr) talks to the
+  # vendor alarm HAL and persist files, so it can't become a coredomain type.
+  - apk: PowerOffAlarm.apk
