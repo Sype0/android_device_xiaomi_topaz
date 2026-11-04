@@ -259,7 +259,6 @@ BOARD_AVB_ODM_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 # VINTF
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
     $(DEVICE_PATH)/configs/vintf/framework_compatibility_matrix.xml \
-    hardware/dolby/configs/vintf/dolby_framework_matrix.xml \
     hardware/xiaomi/vintf/xiaomi_framework_compatibility_matrix.xml
 DEVICE_MANIFEST_FILE += \
     $(DEVICE_PATH)/configs/vintf/manifest.xml \
@@ -286,5 +285,5 @@ CONFIG_ACS := true
 # Include the proprietary files BoardConfig.
 include vendor/xiaomi/topaz/BoardConfigVendor.mk
 
-# Inherit from proprietary files for miuicamera
--include device/xiaomi/miuicamera-topaz/BoardConfig.mk
+# QCOM hardware glue LineageOS keeps in vendor/lineage and build/make
+include $(DEVICE_PATH)/aosp/BoardConfigAosp.mk

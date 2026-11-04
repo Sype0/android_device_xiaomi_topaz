@@ -372,18 +372,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.keystore.app_attest_key.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.keystore.app_attest_key.xml \
     frameworks/native/data/etc/android.software.device_id_attestation.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.device_id_attestation.xml
 
-# Lineage Health
-PRODUCT_PACKAGES += \
-    vendor.lineage.health-service.default
-
-$(call soong_config_set,lineage_health,charging_control_charging_disabled,1)
-$(call soong_config_set,lineage_health,charging_control_charging_enabled,0)
-$(call soong_config_set,lineage_health,charging_control_charging_path,/sys/class/qcom-battery/input_suspend)
-$(call soong_config_set_bool,lineage_health,charging_control_supports_bypass,false)
-
-# Init
-$(call soong_config_set,libinit,vendor_init_lib,//$(LOCAL_PATH):init_topaz)
-
 # Media
 PRODUCT_PACKAGES += \
     libavservices_minijail \
@@ -457,17 +445,13 @@ PRODUCT_PACKAGES += \
     TelecommResCommon \
     TelephonyResCommon \
     WifiResCommon \
-    WifiResTarget \
-    ApertureTopaz
+    WifiResTarget
 
-# Overlays Lineage
 DEVICE_PACKAGE_OVERLAYS += \
-    $(LOCAL_PATH)/overlay \
-    $(LOCAL_PATH)/overlay-lineage
+    $(LOCAL_PATH)/overlay
 
-# Device-specific settings
- PRODUCT_PACKAGES += \
-    XiaomiParts \
+# VoIP fix
+PRODUCT_PACKAGES += \
     XiaomiVoIPFix
 
 # Partitions
@@ -700,14 +684,8 @@ PRODUCT_PACKAGES += \
 # Inherit from the proprietary files makefile.
 $(call inherit-product, vendor/xiaomi/topaz/topaz-vendor.mk)
 
-# Call the MiuiCamera setup
-$(call inherit-product-if-exists, device/xiaomi/miuicamera-topaz/device.mk)
-
-# Call the BCR setup
-$(call inherit-product-if-exists, vendor/bcr/bcr.mk)
-
-# Dolby
-$(call inherit-product, hardware/dolby/dolby.mk)
+# QCOM hardware: the product side of hardware/qcom-caf/common/BoardConfigQcom.mk
+$(call inherit-product, $(LOCAL_PATH)/aosp/qcom_product.mk)
 
 PRODUCT_PACKAGES += \
     libstagefright_foundation-v33

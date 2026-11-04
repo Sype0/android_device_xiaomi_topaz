@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-License-Identifier: Apache-2.0
+
+     GrapheneOS feature switches that need Pixel hardware or firmware.
+-->
+<resources>
+    <!-- USB-C port security (charging-only when locked) is enforced by the
+         Pixel USB HAL and kernel; the QTI USB HAL here does not implement it. -->
+    <bool name="config_usbPortSecuritySupported">false</bool>
+    <bool name="config_usb_port_security_applies_to_pogo_pins">false</bool>
+
+    <!-- Pixel touchscreen glove/alternative mode -->
+    <bool name="config_has_alternative_touchscreen_mode">false</bool>
+
+    <!-- GrapheneOS's PSDS proxy only knows the Pixel GNSS chips -->
+    <string name="config_gnssPsdsType" translatable="false"></string>
+
+    <!-- Pixel Camera / Google apps accelerator (TPU, EdgeTPU) access -->
+    <bool name="config_Google_apps_can_have_special_access_to_accelerators">false</bool>
+    <bool name="config_GoogleCamera_needs_seinfo_for_access_to_accelerators">false</bool>
+</resources>
