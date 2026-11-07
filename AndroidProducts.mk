@@ -5,9 +5,10 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/topaz.mk
+    $(LOCAL_DIR)/aosp_topaz.mk
 
+# AOSP android-17.0.0_r1: release config cp2a (alias aosp_current)
 COMMON_LUNCH_CHOICES := \
-    topaz-cur-user \
-    topaz-cur-userdebug \
-    topaz-cur-eng
+    aosp_topaz-cp2a-user \
+    aosp_topaz-cp2a-userdebug \
+    aosp_topaz-cp2a-eng
